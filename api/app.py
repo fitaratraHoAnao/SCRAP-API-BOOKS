@@ -15,8 +15,10 @@ def scrape_books(url):
         title = book.h3.a['title']
         price = book.select_one('p.price_color').text
         availability = book.select_one('p.instock.availability').text.strip()
-        category = soup.select_one('ul.breadcrumb li:nth-child(3) a').text.strip()
-        
+
+        # Définit une catégorie par défaut, car la page principale n'en a pas
+        category = 'General'
+
         books.append({
             'title': title,
             'price': price,
